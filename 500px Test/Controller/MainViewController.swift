@@ -52,7 +52,7 @@ class MainViewController: UIViewController {
         let fullPhotoItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1),
-            heightDimension: .fractionalWidth(2/3)))
+            heightDimension: .fractionalWidth(6/9)))
         fullPhotoItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
         
         // Main with pair
