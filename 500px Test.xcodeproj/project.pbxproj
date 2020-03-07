@@ -13,6 +13,14 @@
 		BD3A438B2413234D00C2B72E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3A43892413234D00C2B72E /* Main.storyboard */; };
 		BD3A438D2413235000C2B72E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD3A438C2413235000C2B72E /* Assets.xcassets */; };
 		BD3A43902413235000C2B72E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD3A438E2413235000C2B72E /* LaunchScreen.storyboard */; };
+		BD3A43A1241325CB00C2B72E /* ParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A4399241325CB00C2B72E /* ParameterEncoder.swift */; };
+		BD3A43A2241325CB00C2B72E /* URLParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A439A241325CB00C2B72E /* URLParameterEncoder.swift */; };
+		BD3A43A3241325CB00C2B72E /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A439B241325CB00C2B72E /* JSONParameterEncoder.swift */; };
+		BD3A43A4241325CB00C2B72E /* Endpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A439D241325CB00C2B72E /* Endpoint.swift */; };
+		BD3A43A5241325CB00C2B72E /* NetworkRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A439F241325CB00C2B72E /* NetworkRouter.swift */; };
+		BD3A43A6241325CB00C2B72E /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43A0241325CB00C2B72E /* Router.swift */; };
+		BD3A43A92413265500C2B72E /* PhotosApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43A82413265500C2B72E /* PhotosApi.swift */; };
+		BD3A43AF24132C3500C2B72E /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43AE24132C3500C2B72E /* Data+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +32,14 @@
 		BD3A438C2413235000C2B72E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD3A438F2413235000C2B72E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD3A43912413235000C2B72E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BD3A4399241325CB00C2B72E /* ParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParameterEncoder.swift; sourceTree = "<group>"; };
+		BD3A439A241325CB00C2B72E /* URLParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParameterEncoder.swift; sourceTree = "<group>"; };
+		BD3A439B241325CB00C2B72E /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		BD3A439D241325CB00C2B72E /* Endpoint.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Endpoint.swift; sourceTree = "<group>"; };
+		BD3A439F241325CB00C2B72E /* NetworkRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkRouter.swift; sourceTree = "<group>"; };
+		BD3A43A0241325CB00C2B72E /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		BD3A43A82413265500C2B72E /* PhotosApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosApi.swift; sourceTree = "<group>"; };
+		BD3A43AE24132C3500C2B72E /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,14 +73,70 @@
 			isa = PBXGroup;
 			children = (
 				BD3A43832413234D00C2B72E /* AppDelegate.swift */,
+				BD3A4397241325CB00C2B72E /* Networking */,
 				BD3A43852413234D00C2B72E /* SceneDelegate.swift */,
 				BD3A43872413234D00C2B72E /* ViewController.swift */,
+				BD3A43AD24132C0F00C2B72E /* Extensions */,
 				BD3A43892413234D00C2B72E /* Main.storyboard */,
 				BD3A438C2413235000C2B72E /* Assets.xcassets */,
 				BD3A438E2413235000C2B72E /* LaunchScreen.storyboard */,
 				BD3A43912413235000C2B72E /* Info.plist */,
 			);
 			path = "500px Test";
+			sourceTree = "<group>";
+		};
+		BD3A4397241325CB00C2B72E /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A43A72413264700C2B72E /* API */,
+				BD3A4398241325CB00C2B72E /* Encoding */,
+				BD3A439C241325CB00C2B72E /* Endpoint */,
+				BD3A439E241325CB00C2B72E /* Service */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		BD3A4398241325CB00C2B72E /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A4399241325CB00C2B72E /* ParameterEncoder.swift */,
+				BD3A439A241325CB00C2B72E /* URLParameterEncoder.swift */,
+				BD3A439B241325CB00C2B72E /* JSONParameterEncoder.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		BD3A439C241325CB00C2B72E /* Endpoint */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A439D241325CB00C2B72E /* Endpoint.swift */,
+			);
+			path = Endpoint;
+			sourceTree = "<group>";
+		};
+		BD3A439E241325CB00C2B72E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A439F241325CB00C2B72E /* NetworkRouter.swift */,
+				BD3A43A0241325CB00C2B72E /* Router.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		BD3A43A72413264700C2B72E /* API */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A43A82413265500C2B72E /* PhotosApi.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		BD3A43AD24132C0F00C2B72E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A43AE24132C3500C2B72E /* Data+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,8 +210,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD3A43A4241325CB00C2B72E /* Endpoint.swift in Sources */,
+				BD3A43A5241325CB00C2B72E /* NetworkRouter.swift in Sources */,
 				BD3A43882413234D00C2B72E /* ViewController.swift in Sources */,
 				BD3A43842413234D00C2B72E /* AppDelegate.swift in Sources */,
+				BD3A43A92413265500C2B72E /* PhotosApi.swift in Sources */,
+				BD3A43A6241325CB00C2B72E /* Router.swift in Sources */,
+				BD3A43A3241325CB00C2B72E /* JSONParameterEncoder.swift in Sources */,
+				BD3A43A1241325CB00C2B72E /* ParameterEncoder.swift in Sources */,
+				BD3A43AF24132C3500C2B72E /* Data+Extension.swift in Sources */,
+				BD3A43A2241325CB00C2B72E /* URLParameterEncoder.swift in Sources */,
 				BD3A43862413234D00C2B72E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
