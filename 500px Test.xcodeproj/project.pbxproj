@@ -22,6 +22,7 @@
 		BD3A43A92413265500C2B72E /* PhotosApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43A82413265500C2B72E /* PhotosApi.swift */; };
 		BD3A43AF24132C3500C2B72E /* Data+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43AE24132C3500C2B72E /* Data+Extension.swift */; };
 		BD3A43B22413352500C2B72E /* PhotoStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43B12413352500C2B72E /* PhotoStream.swift */; };
+		BD3A43B52414023300C2B72E /* PhotoItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43B42414023300C2B72E /* PhotoItemCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		BD3A43A82413265500C2B72E /* PhotosApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosApi.swift; sourceTree = "<group>"; };
 		BD3A43AE24132C3500C2B72E /* Data+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Extension.swift"; sourceTree = "<group>"; };
 		BD3A43B12413352500C2B72E /* PhotoStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoStream.swift; sourceTree = "<group>"; };
+		BD3A43B42414023300C2B72E /* PhotoItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoItemCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,10 +76,11 @@
 		BD3A43822413234D00C2B72E /* 500px Test */ = {
 			isa = PBXGroup;
 			children = (
-				BD3A43B02413351300C2B72E /* Model */,
 				BD3A43832413234D00C2B72E /* AppDelegate.swift */,
-				BD3A4397241325CB00C2B72E /* Networking */,
 				BD3A43852413234D00C2B72E /* SceneDelegate.swift */,
+				BD3A43B02413351300C2B72E /* Model */,
+				BD3A4397241325CB00C2B72E /* Networking */,
+				BD3A43B32414021100C2B72E /* Views */,
 				BD3A43872413234D00C2B72E /* MainViewController.swift */,
 				BD3A43AD24132C0F00C2B72E /* Extensions */,
 				BD3A43892413234D00C2B72E /* Main.storyboard */,
@@ -148,6 +151,14 @@
 				BD3A43B12413352500C2B72E /* PhotoStream.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		BD3A43B32414021100C2B72E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				BD3A43B42414023300C2B72E /* PhotoItemCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -225,6 +236,7 @@
 				BD3A43A5241325CB00C2B72E /* NetworkRouter.swift in Sources */,
 				BD3A43882413234D00C2B72E /* MainViewController.swift in Sources */,
 				BD3A43842413234D00C2B72E /* AppDelegate.swift in Sources */,
+				BD3A43B52414023300C2B72E /* PhotoItemCell.swift in Sources */,
 				BD3A43A92413265500C2B72E /* PhotosApi.swift in Sources */,
 				BD3A43A6241325CB00C2B72E /* Router.swift in Sources */,
 				BD3A43A3241325CB00C2B72E /* JSONParameterEncoder.swift in Sources */,
