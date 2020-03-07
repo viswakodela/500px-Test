@@ -13,6 +13,15 @@ class PhotoItemCell: UICollectionViewCell {
     // MARK:- Properties
     static let photoItemCellID = "photoItemCellID"
     
+    // MARK:- Layout Objects
+    let photoImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
+        return iv
+    }()
+    
     // MARK:- Initializer
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -21,6 +30,8 @@ class PhotoItemCell: UICollectionViewCell {
     
     private func configureCell() {
         backgroundColor = .red
+        addSubview(photoImageView)
+        photoImageView.frame = bounds
     }
     
     required init?(coder: NSCoder) {

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class MainViewController: UIViewController {
     
@@ -71,7 +72,8 @@ class MainViewController: UIViewController {
         // group
         let nestedGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),
-                                               heightDimension: .fractionalWidth(16/9)), subitems: [fullPhotoItem, mainWithPairGroup])
+                                               heightDimension: .fractionalWidth(16/9)),
+            subitems: [fullPhotoItem, mainWithPairGroup])
         
         // section
         let section = NSCollectionLayoutSection(group: nestedGroup)
@@ -83,7 +85,7 @@ class MainViewController: UIViewController {
         let parameters: Parameters = ["feature" : "popular",]
         MainViewController.popularPhotosApi.request(.getPhotos(featureType: parameters)) { (data, resp, err) in
             if let error = err {
-                print("Erro fetching popular photos with error \(error.localizedDescription)")
+                print("Error fetching popular photos with error \(error.localizedDescription)")
                 return
             }
             guard let data = data else { return }
@@ -101,10 +103,6 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         photos.count
     }
