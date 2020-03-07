@@ -13,13 +13,17 @@ class MainViewController: UIViewController {
     
     // MARK:- Properties
     static let popularPhotosApi = Router<PopularApi>()
+    
+    var photoStream: PhotoStream?
     var photos = [Photo]()
     
     /// CurrentPage helps to paginate the data
     var currentPage: Int = 1
     
-    /// TotalPages helps to limt fetching new content when we reach to the end.
-    var totalPages: Int = 0
+    /// TotalPages helps to limt fetching new content when we reach towards the end.
+    var totalPages: Int? {
+        return photoStream?.totalPages ?? 0
+    }
     
     // MARK:- Layout objects
     var collectionView: UICollectionView! = nil
@@ -34,6 +38,7 @@ class MainViewController: UIViewController {
 
     // MARK:- Helper Methods
     private func configureCollectionView() {
+        navigationItem.title = "Popular"
         collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: generateLayout())
         view.addSubview(collectionView)
         collectionView.backgroundColor = .systemBackground
@@ -117,8 +122,8 @@ class MainViewController: UIViewController {
             guard let data = data else { return }
             do {
                 let popularPhotos = try JSONDecoder().decode(PhotoStream.self, from: data)
+                self.photoStream = popularPhotos
                 self.currentPage = popularPhotos.currentPage
-                self.totalPages = popularPhotos.totalPages
                 self.photos += popularPhotos.photos
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
@@ -146,8 +151,8 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         // pre fetch new data
         if indexPath.item == photos.count - 30 {
             print("Start paginating")
-            self.currentPage += 1
-            if currentPage <= totalPages { // stop fetching new data once we reach to the end.
+            self.currentPage += 1 // fetch next page
+            if currentPage <= totalPages ?? 0 { // stop fetching new data once we reach to the end.
                 self.fetchData()
             }
         }
