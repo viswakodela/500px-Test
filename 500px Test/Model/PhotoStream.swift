@@ -9,31 +9,31 @@
 import Foundation
 
 struct PhotoStream: Decodable {
-    let currentPage : Int
-    let feature     : String
-    let totalItems  : Int
-    let photos      : [Photo]
+    let currentPage             : Int
+    let feature                 : String
+    let totalItems              : Int
+    let photos                  : [Photo]
     
     private enum CodingKeys: String, CodingKey {
-        case currentPage    = "current_page"
-        case totalItems     = "total_items"
+        case currentPage        = "current_page"
+        case totalItems         = "total_items"
         case feature, photos
     }
 }
 
 struct Photo: Decodable {
-    let id              : Int
-    let createdDate     : String
-    let featureDate     : String
-    let takenAt         : String?
-    let description     : String
-    let imageUrls       : [String]
-    let numberOfVotes   : Int
-    let numberOfViews   : Int
-    let numberOfComments: Int
-    let url             : String
-    let height          : Int
-    let user            : User
+    let id                      : Int
+    let createdDate             : String
+    let featureDate             : String
+    let takenAt                 : String?
+    let description             : String
+    let imageUrls               : [String]
+    let numberOfVotes           : Int
+    let numberOfViews           : Int
+    let numberOfComments        : Int
+    let url                     : String
+    let height                  : Int
+    let user                    : User
     
     private enum CodingKeys: String, CodingKey {
         case id, description, url, height, user
@@ -48,13 +48,13 @@ struct Photo: Decodable {
 }
 
 struct User: Decodable {
-    let id              : Int
-    let username        : String
-    let firstname       : String
-    let lastname        : String?
-    let city            : String
-    let country         : String
-    let fullname        : String
-    let userpic_url     : String
+    let id                      : Int
+    let username                : String
+    let firstname               : String
+    let lastname                : String?
+    let city                    : String
+    let country                 : String
+    let fullname                : String
+    let userpic_url             : String
 }
 
