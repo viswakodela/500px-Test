@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class MainViewController: UIViewController {
     
     // MARK:- Properties
     static let popularPhotosApi = Router<PopularApi>()
@@ -31,9 +31,18 @@ class ViewController: UIViewController {
     
     private func fetchTestData() {
         let parameters: Parameters = ["feature" : "popular",]
-        ViewController.popularPhotosApi.request(.getPhotos(featureType: parameters)) { (data, resp, err) in
+        MainViewController.popularPhotosApi.request(.getPhotos(featureType: parameters)) { (data, resp, err) in
+            if let error = err {
+                print("Erro fetching popular photos with error \(error.localizedDescription)")
+                return
+            }
             guard let data = data else { return }
-            print(data.prettyPrintedJSONString ?? "")
+            do {
+                let popularPhotos = try JSONDecoder().decode(PhotoStream.self, from: data)
+                print(popularPhotos)
+            } catch {
+                print("Decoding error.. \(error.localizedDescription)")
+            }
         }
     }
 }
