@@ -14,7 +14,11 @@ class MainViewController: UIViewController {
     // MARK:- Properties
     static let popularPhotosApi = Router<PopularApi>()
     var photos = [Photo]()
+    
+    /// CurrentPage helps to paginate the data
     var currentPage: Int = 1
+    
+    /// TotalPages helps to limt fetching new content when we reach to the end.
     var totalPages: Int = 0
     
     // MARK:- Layout objects
@@ -49,7 +53,7 @@ class MainViewController: UIViewController {
         // Main with pair
         let mainItem = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.7),
+                widthDimension: .fractionalWidth(0.5),
                 heightDimension: .fractionalHeight(1)))
         mainItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
         
@@ -59,15 +63,17 @@ class MainViewController: UIViewController {
                 heightDimension: .fractionalHeight(0.5)))
         pairItem.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
         
-        let rightGroup = NSCollectionLayoutGroup.vertical(
+        let pairGroup = NSCollectionLayoutGroup.vertical(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.3),
+                widthDimension: .fractionalWidth(0.5),
                 heightDimension: .fractionalHeight(1)),
             subitem: pairItem, count: 2)
         
         let mainWithPairGroup = NSCollectionLayoutGroup.horizontal(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(4/9)), subitems: [mainItem, rightGroup])
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalWidth(6/9)),
+            subitems: [mainItem, pairGroup])
         
         // Triplet
         let tripletItem = NSCollectionLayoutItem(
@@ -79,7 +85,7 @@ class MainViewController: UIViewController {
         let tripletGroup = NSCollectionLayoutGroup.horizontal(
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
-            heightDimension: .fractionalWidth(2/9)),
+            heightDimension: .fractionalWidth(4/9)),
           subitems: [tripletItem, tripletItem, tripletItem])
 
         // Reversed main with pair
@@ -87,7 +93,7 @@ class MainViewController: UIViewController {
           layoutSize: NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
             heightDimension: .fractionalWidth(4/9)),
-          subitems: [rightGroup, mainItem])
+          subitems: [pairGroup, mainItem])
         
         // nest groups
         let nestedGroup = NSCollectionLayoutGroup.vertical(
@@ -127,7 +133,6 @@ class MainViewController: UIViewController {
 // MARK:- UICollectionView Delegate and DataSource Methods
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(photos.count)
         return photos.count
     }
     
