@@ -13,8 +13,6 @@ class MainViewController: UIViewController {
     
     // MARK:- Properties
     static let popularPhotosApi = Router<PopularApi>()
-    
-    var photoStream: PhotoStream?
     var photos = [Photo]()
     
     /// CurrentPage helps to paginate the data
@@ -23,6 +21,13 @@ class MainViewController: UIViewController {
     /// TotalPages helps to limt fetching new content when we reach towards the end.
     var totalPages: Int? {
         return photoStream?.totalPages ?? 0
+    }
+    
+    var photoStream: PhotoStream? {
+        didSet {
+            self.currentPage = photoStream?.currentPage ?? 0
+            self.photos += photoStream?.photos ?? []
+        }
     }
     
     // MARK:- Layout objects
@@ -113,18 +118,23 @@ class MainViewController: UIViewController {
     }
     
     private func fetchData() {
-        let parameters: Parameters = ["feature" : "popular", "page": currentPage]
+        let parameters: Parameters = ["feature" : "popular", "page": currentPage, "image_size": "3,2"]
         MainViewController.popularPhotosApi.request(.getPhotos(featureType: parameters)) { (data, resp, err) in
             if let error = err {
                 print("Error fetching popular photos with error \(error.localizedDescription)")
                 return
             }
+            
+            if let response = resp as? HTTPURLResponse {
+                if !(200..<300).contains(response.statusCode) {
+                    // SHow erros respectively
+                }
+            }
+            
             guard let data = data else { return }
             do {
                 let popularPhotos = try JSONDecoder().decode(PhotoStream.self, from: data)
                 self.photoStream = popularPhotos
-                self.currentPage = popularPhotos.currentPage
-                self.photos += popularPhotos.photos
                 DispatchQueue.main.async {
                     self.collectionView.reloadData()
                 }
