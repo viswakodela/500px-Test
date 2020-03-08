@@ -25,6 +25,7 @@ class ImageWithLabelView: UIView {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = true
         label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .white
         return label
     }()
     
