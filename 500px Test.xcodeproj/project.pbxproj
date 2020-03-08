@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD121083241561CE00971930 /* LikesAndLocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD121082241561CE00971930 /* LikesAndLocationModel.swift */; };
+		BD1210852415646600971930 /* LocationLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD1210842415646600971930 /* LocationLabel.swift */; };
 		BD310D012414387F00801041 /* PhotoDetailsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D002414387F00801041 /* PhotoDetailsController.swift */; };
 		BD310D032414785600801041 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D022414785600801041 /* Photo.swift */; };
 		BD310D052414787D00801041 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D042414787D00801041 /* User.swift */; };
@@ -38,6 +40,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BD121082241561CE00971930 /* LikesAndLocationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesAndLocationModel.swift; sourceTree = "<group>"; };
+		BD1210842415646600971930 /* LocationLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationLabel.swift; sourceTree = "<group>"; };
 		BD310D002414387F00801041 /* PhotoDetailsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailsController.swift; sourceTree = "<group>"; };
 		BD310D022414785600801041 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		BD310D042414787D00801041 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 			children = (
 				BD310D1324154D1600801041 /* NavigationHeader.swift */,
 				BD310D152415568300801041 /* ImageWithSpinner.swift */,
+				BD1210842415646600971930 /* LocationLabel.swift */,
 			);
 			path = "Custom Views";
 			sourceTree = "<group>";
@@ -103,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				BD310D1B24155CC500801041 /* DetailsHeaderModel.swift */,
+				BD121082241561CE00971930 /* LikesAndLocationModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -306,8 +312,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD310D092414900900801041 /* DetailsController.swift in Sources */,
+				BD1210852415646600971930 /* LocationLabel.swift in Sources */,
 				BD3A43A4241325CB00C2B72E /* Endpoint.swift in Sources */,
 				BD310D1924155C2E00801041 /* LikesAndLocationCell.swift in Sources */,
+				BD121083241561CE00971930 /* LikesAndLocationModel.swift in Sources */,
 				BD3A43A5241325CB00C2B72E /* NetworkRouter.swift in Sources */,
 				BD310D162415568300801041 /* ImageWithSpinner.swift in Sources */,
 				BD3A43882413234D00C2B72E /* MainViewController.swift in Sources */,

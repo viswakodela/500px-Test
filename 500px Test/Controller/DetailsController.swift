@@ -12,7 +12,7 @@ class DetailsController: UICollectionViewController {
     
     let photo: Photo
     let edgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
-    var dataSource = [Int]()
+    var dataSource = [DetailsModelProtocol]()
     
     // MARK:- Layout Objects
     lazy var navigationHeaderView: NavigationHeader = {
@@ -31,6 +31,7 @@ class DetailsController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureLayout()
+        createDataSource()
         configureCollectionView()
     }
     
@@ -51,8 +52,15 @@ class DetailsController: UICollectionViewController {
     private func configureCollectionView() {
         view.backgroundColor = .black
         collectionView.contentInset = edgeInsets
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "dummyCell")
+        collectionView.register(LikeAndLocationCell.self, forCellWithReuseIdentifier: LikeAndLocationCell.locationCellID)
         collectionView.register(ImageHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ImageHeaderView.imageHeaderID)
+    }
+    
+    private func createDataSource() {
+        let likesAndLocationModel = LikesAndLocationModel(photo: photo)
+        self.dataSource.append(likesAndLocationModel)
+        
+        self.collectionView.reloadData()
     }
     
     required init?(coder: NSCoder) {
@@ -67,12 +75,13 @@ extension DetailsController: UICollectionViewDelegateFlowLayout {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        80
+        dataSource.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "dummyCell", for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: LikeAndLocationCell.locationCellID, for: indexPath) as! LikeAndLocationCell
+        let locationModel = LikesAndLocationModel(photo: photo)
+        cell.populateCell(with: locationModel)
         return cell
     }
     
@@ -80,8 +89,11 @@ extension DetailsController: UICollectionViewDelegateFlowLayout {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ImageHeaderView.imageHeaderID, for: indexPath) as! ImageHeaderView
         let detailsHeaderModel = DetailsHeaderModel(photo: photo)
         header.configureHeader(with: detailsHeaderModel)
-//        header.configureHeader(with: photo, and: photo.user)
         return header
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: view.frame.width - 30, height: 150)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

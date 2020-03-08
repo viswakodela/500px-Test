@@ -10,6 +10,7 @@ import Foundation
 
 struct Photo: Decodable {
     let id                      : Int
+    let userID                  : Int?
     let createdDate             : String
     let featureDate             : String
     let takenAt                 : String?
@@ -25,7 +26,7 @@ struct Photo: Decodable {
     let name                    : String
     
     private enum CodingKeys: String, CodingKey {
-        case id, description, url, height, user, images, name
+        case id, description, url, height, user, images, name, userID
         case createdDate        = "created_at"
         case featureDate        = "feature_date"
         case takenAt            = "taken_at"

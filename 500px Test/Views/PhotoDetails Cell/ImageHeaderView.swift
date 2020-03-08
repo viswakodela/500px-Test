@@ -107,28 +107,13 @@ class ImageHeaderView: UICollectionReusableView {
     
     func fetchHDImage(with detailModel: DetailsHeaderModel) {
         imageNameLabel.text = detailModel.imageName
-        
-        MainViewController.popularPhotosApi.request(.getPhoto(withID: detailModel.photoId)) { (data, resp, err) in
-            if let error = err {
-                print(error.localizedDescription)
-                // Respond to error
-            }
-            guard let data = data else {return}
-            do {
-                let photoDetail = try JSONDecoder().decode(PhotoDetail.self, from: data)
-                DispatchQueue.main.async {
-                    guard let imageUrlString = photoDetail.photo.imageUrls.first, let url = URL(string: imageUrlString) else { return }
-                    self.imageWithSpinnerView.photoImageView.sd_setImage(with: url)
-                    self.imageWithSpinnerView.activitySpinner.stopAnimating()
-                }
-            } catch {
-                print("Error fetching Photo Details with error \(error.localizedDescription)")
-                // Respond to error
+        detailModel.fetchPhotDetails { (photoDetail) in
+            DispatchQueue.main.async {
+                guard let imageUrlString = photoDetail.photo.imageUrls.first, let url = URL(string: imageUrlString) else { return }
+                self.imageWithSpinnerView.photoImageView.sd_setImage(with: url)
+                self.imageWithSpinnerView.activitySpinner.stopAnimating()
             }
         }
-    }
-    
-    private func fetchHDImage(for photo: Photo) {
     }
     
     required init?(coder: NSCoder) {

@@ -10,11 +10,30 @@ import UIKit
 
 protocol DetailsModelProtocol: class {
     init(photo: Photo)
+    var photo: Photo { get }
+}
+
+extension DetailsModelProtocol {
+    func fetchPhotDetails(completion: @escaping (PhotoDetail) -> Void) {
+        MainViewController.popularPhotosApi.request(.getPhoto(withID: photo.id)) { (data, resp, err) in
+            if let error = err {
+                print(error.localizedDescription)
+                // Respond to error
+            }
+            guard let data = data else {return}
+            do {
+                let photoDetail = try JSONDecoder().decode(PhotoDetail.self, from: data)
+                completion(photoDetail)
+            } catch {
+                print("Error fetching Photo Details with error \(error.localizedDescription)")
+                // Respond to error
+            }
+        }
+    }
 }
 
 class DetailsHeaderModel: DetailsModelProtocol {
-    
-    let photo: Photo
+    var photo: Photo
     
     var photoId: Int {
         return photo.id
