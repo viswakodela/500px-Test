@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Collection view cell that represents each item user will see in the `MainViewController`
 class PhotoItemCell: UICollectionViewCell {
     
     // MARK:- Properties

@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Use this Custum view to show loadin spinner until the image gets loaded on to the imageView.
 class ImageWithSpinner: UIImageView {
     
     // MARK:- Layout objects

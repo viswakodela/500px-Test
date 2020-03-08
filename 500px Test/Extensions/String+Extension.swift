@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    /// Use this property to get the date out from a string, if the dateFormatter returns nil then it will give us the current date.
     var dateFromString: Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")

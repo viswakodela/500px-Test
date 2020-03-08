@@ -9,6 +9,8 @@
 import Foundation
 
 extension Int {
+    
+    /// This property helps you get the correct decimal format for a given number.
     var giveMeCorrectFormat: String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal

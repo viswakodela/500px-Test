@@ -38,7 +38,7 @@ struct Photo: Decodable {
 }
 
 struct PhotoDetail: Decodable {
-    let photo: Photo
+    let photo                   : Photo
 }
 
 struct Images: Decodable {

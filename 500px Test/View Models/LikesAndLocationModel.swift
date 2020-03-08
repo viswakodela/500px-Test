@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// This class is a view model for the First cell which is `LikesAndLocationCell`.
 class LikesAndLocationModel: DetailsModelProtocol {
     
     let photo: Photo

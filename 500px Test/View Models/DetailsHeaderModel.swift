@@ -15,6 +15,9 @@ protocol DetailsModelProtocol: class {
 }
 
 extension DetailsModelProtocol {
+    
+    /// A default implementation to fetch the `HD image` for any class that conforms to this protocol
+    /// - Parameter completion: callback
     func fetchPhotDetails(completion: @escaping (PhotoDetail) -> Void) {
         MainViewController.popularPhotosApi.request(.getPhoto(withID: photo.id)) { (data, resp, err) in
             if let error = err {
@@ -33,6 +36,7 @@ extension DetailsModelProtocol {
     }
 }
 
+/// This is a ViewModel for Collection Views's header in the `DetailsController`
 class DetailsHeaderModel: DetailsModelProtocol {
     var photo: Photo
     

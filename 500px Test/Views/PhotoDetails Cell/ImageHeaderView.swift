@@ -8,10 +8,13 @@
 
 import UIKit
 
+/// UICollectionView's Header that holds the `HD Image` of the requested image.
 class ImageHeaderView: UICollectionReusableView {
     
+    // MARK:- Properties
     static let imageHeaderID = "imageHeaderID"
     
+    // MARK:- Layout Object
     let imageWithSpinnerView: ImageWithSpinner = {
         let iws = ImageWithSpinner(frame: .zero)
         iws.translatesAutoresizingMaskIntoConstraints = false
@@ -84,11 +87,13 @@ class ImageHeaderView: UICollectionReusableView {
         return sv
     }()
     
+    // MARK:- Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurelayout()
     }
     
+    // MARK:- Helper Methods
     private func configurelayout() {
         addSubview(overallStackView)
         overallStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true

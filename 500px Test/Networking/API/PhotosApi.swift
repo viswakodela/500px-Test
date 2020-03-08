@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// PhotoStreamApi hols the Network stuff for `Photo` model. for ex: all the endpoints that gives `/v1/photos/...` should only be used in here.
 enum PhotoStreamApi {
     case getPhotos(featureType: Parameters)
     case getPhoto(withID: Int)

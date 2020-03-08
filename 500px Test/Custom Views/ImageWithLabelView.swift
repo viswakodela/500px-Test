@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This is is only being used to show the `Map Pin` and `location` of the photo taken in the Details controller.
 class ImageWithLabelView: UIView {
     
     // MARK:- Layout objects

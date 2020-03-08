@@ -8,6 +8,8 @@
 
 import UIKit
 
+/// This Class could represent the Photo detatils ViewController, but i am not using it anywhere in the project. However `PhotoDetailsController` has `pinch to zoom` feature added to it. But i like the idea of `DetailsController` and how it manages to show detailes.
+// I used this class for the first time and later i wanted to go with `DetailsController` class.
 class PhotoDetailsController: UIViewController {
     
     // MARK:- Properties

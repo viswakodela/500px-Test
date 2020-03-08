@@ -10,6 +10,7 @@ import UIKit
 
 class ViewCountView: UIView {
     
+    // MARK:- Layout Objects
     let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false

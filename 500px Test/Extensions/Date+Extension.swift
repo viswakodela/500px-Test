@@ -9,6 +9,7 @@
 import Foundation
 
 extension Date {
+    /// Use this getter to to get the data in the string format. If the caller's date is less than 1 day then the returned string will be in hours or else it will give regular format of a date.
     var stringFromDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .short

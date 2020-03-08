@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// This class is used to mimic the regular navigationBar, we are using this in the `DetailsController`. We could do lot more with this class than i did in this project.
 class NavigationHeader: UIView {
     
     // MARK:- Layout Object
@@ -43,6 +44,7 @@ class NavigationHeader: UIView {
         configureLayout()
     }
     
+    // MARK:- Helper Methods
     private func configureLayout() {
         backgroundColor = .systemBackground
         layer.shadowColor = UIColor.black.cgColor

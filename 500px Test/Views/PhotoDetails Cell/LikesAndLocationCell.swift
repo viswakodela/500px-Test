@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Collection View cell that mimics the original `500px` app. I finished this project in hurry, So you might fell odd in some parts of the code. But trust me if would have more time then could do it in a better way.
 class LikeAndLocationCell: UICollectionViewCell {
     
     // MARK:- Layout Object

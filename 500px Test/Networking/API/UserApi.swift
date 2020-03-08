@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// UserApi holds Network routing endpoints for `User`. For ex: all the user relevent endpoints `/v1/users/...` should only be used.
 enum UserApi {
     case getUser(withId: Int)
 }

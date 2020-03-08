@@ -9,6 +9,7 @@
 import UIKit
 import SDWebImage
 
+/// A ViewController that holds a collectionView which populates the `POPULAR` images. I could have done it will all the categories, but when i start this project i was already half way through and as i don't have much time i rushed it with out implementing for all the available `categories`
 class MainViewController: UIViewController {
     
     // MARK:- Properties

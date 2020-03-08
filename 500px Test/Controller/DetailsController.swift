@@ -8,10 +8,16 @@
 
 import UIKit
 
+/// This class is the base class to represent the Detailed content of the Image. I tried mimicing the actual UI in the `500px` app, but i don't have much time to implement as it is show in the real app. So i did what i could.]
 class DetailsController: UICollectionViewController {
     
+    // MARK:- Properties
     let photo: Photo
     let edgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    
+    /// This property is represents the data underlies in all the cell's of the collectionView.
+    /// I created this particularly to add the data for each cell in the collectionView. Each cell has its own view model but they all depends on the `DetailsModelProtocol` which basically depends on `Photo` object.
+    /// You can ask me why i choose this way to represent the DetailsController.
     var dataSource = [DetailsModelProtocol]()
     
     // MARK:- Layout Objects
@@ -22,6 +28,7 @@ class DetailsController: UICollectionViewController {
         return view
     }()
     
+    // MARK:- Init
     init(photo: Photo) {
         self.photo = photo
         let layout = UICollectionViewFlowLayout()
@@ -41,6 +48,7 @@ class DetailsController: UICollectionViewController {
         navigationController?.navigationBar.isHidden = true
     }
     
+    // MARK:- Helper Methods
     private func configureLayout() {
         view.addSubview(navigationHeaderView)
         navigationHeaderView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -68,7 +76,7 @@ class DetailsController: UICollectionViewController {
     }
 }
 
-
+// MARK:- UICollection View Delegate, DataSource and DelegateFlowLayout Methods
 extension DetailsController: UICollectionViewDelegateFlowLayout {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
         1
