@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Protocol that represents the Data layer for DetailsController
 protocol DetailsModelProtocol: class {
     init(photo: Photo)
     var photo: Photo { get }

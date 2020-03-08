@@ -137,7 +137,6 @@ class MainViewController: UIViewController {
             }
             
             guard let data = data else { return }
-            print(data.prettyPrintedJSONString)
             do {
                 let popularPhotos = try JSONDecoder().decode(PhotoStream.self, from: data)
                 self.photoStream = popularPhotos

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LocationLable: UIView {
+class ImageWithLabelView: UIView {
     
     // MARK:- Layout objects
     let gpsImageView: UIImageView = {
@@ -51,5 +51,4 @@ class LocationLable: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }

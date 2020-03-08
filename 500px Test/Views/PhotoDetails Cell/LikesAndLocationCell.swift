@@ -11,33 +11,43 @@ import UIKit
 class LikeAndLocationCell: UICollectionViewCell {
     
     // MARK:- Layout Object
-    let locationView = LocationLable()
+    static let userApi = Router<UserApi>()
+    let locationView = ImageWithLabelView()
     static let locationCellID = "locationCellID"
     
     let viewsCountView: ViewCountView = {
         let view = ViewCountView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.titleLabel.text = "Views"
         return view
     }()
     
     let votesCountView: ViewCountView = {
         let view = ViewCountView()
-        view.translatesAutoresizingMaskIntoConstraints = false
         view.titleLabel.text = "Votes"
         return view
     }()
     
+    let followersCountView: ViewCountView = {
+        let view = ViewCountView()
+        view.titleLabel.text = "Followers"
+        return view
+    }()
+    
     lazy var bottomStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [viewsCountView, votesCountView, UIView()])
+        let sv = UIStackView(arrangedSubviews: [viewsCountView,
+                                                votesCountView,
+                                                followersCountView,
+                                                ])
         sv.translatesAutoresizingMaskIntoConstraints = true
         sv.axis = .horizontal
-        sv.spacing = 50
+        sv.spacing = 30
+        sv.distribution = .fillEqually
         return sv
     }()
     
     lazy var overallStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [locationView, bottomStackView])
+        let sv = UIStackView(arrangedSubviews: [locationView,
+                                                bottomStackView,])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.spacing = 40
@@ -65,6 +75,21 @@ class LikeAndLocationCell: UICollectionViewCell {
         locationView.countryLabel.text = "\(detailModel.city), \(detailModel.country)"
         viewsCountView.countLabel.text = detailModel.views
         votesCountView.countLabel.text = detailModel.votes
+        fetchFollowersData(detailModel: detailModel)
+    }
+    
+    private func fetchFollowersData(detailModel: LikesAndLocationModel) {
+        LikeAndLocationCell.userApi.request(.getUser(withId: detailModel.userId)) { (data, resp, err) in
+            guard let data = data else { return }
+            do {
+                let followers = try JSONDecoder().decode(Follower.self, from: data)
+                DispatchQueue.main.async {
+                    self.followersCountView.countLabel.text = "\(followers.followers.count)"
+                }
+            } catch {
+                print("Error fetching followers count with error \(error.localizedDescription)")
+            }
+        }
     }
     
     required init?(coder: NSCoder) {

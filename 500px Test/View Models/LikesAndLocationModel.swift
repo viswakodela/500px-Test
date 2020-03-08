@@ -12,6 +12,10 @@ class LikesAndLocationModel: DetailsModelProtocol {
     
     let photo: Photo
     
+    var userId: Int {
+        return photo.user?.id ?? 0
+    }
+    
     var city: String {
         return photo.user?.city ?? ""
     }

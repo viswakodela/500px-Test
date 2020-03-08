@@ -14,10 +14,6 @@ enum PhotoStreamApi {
 }
 
 extension PhotoStreamApi: EndPointType {
-    var baseURL: URL {
-        guard let baseUrl =  URL(string: "https://api.500px.com") else { fatalError() }
-        return baseUrl
-    }
 
     var path: String {
         switch self {

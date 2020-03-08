@@ -1,5 +1,5 @@
 //
-//  ViewCountView.swift
+//  LocationLabel.swift
 //  500px Test
 //
 //  Created by Viswa Kodela on 2020-03-08.
@@ -8,30 +8,30 @@
 
 import UIKit
 
-class ViewCountView: UIView {
+class ImageWithLabelView: UIView {
     
-    let titleLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Views"
-        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
-        label.textColor = .white
-        return label
+    // MARK:- Layout objects
+    let gpsImageView: UIImageView = {
+        let iv = UIImageView()
+        iv.translatesAutoresizingMaskIntoConstraints = false
+        iv.image = UIImage(systemName: "mappin")
+        iv.tintColor = .white
+        iv.contentMode = .scaleAspectFit
+        return iv
     }()
     
-    let countLabel: UILabel = {
+    let countryLabel: UILabel = {
         let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.monospacedDigitSystemFont(ofSize: 25, weight: .semibold)
-        label.textColor = .white
+        label.translatesAutoresizingMaskIntoConstraints = true
+        label.font = UIFont.systemFont(ofSize: 16, weight: .regular)
         return label
     }()
     
     lazy var overallStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [titleLabel, countLabel, UIView()])
+        let sv = UIStackView(arrangedSubviews: [gpsImageView, countryLabel, UIView()])
         sv.translatesAutoresizingMaskIntoConstraints = false
-        sv.axis = .vertical
-        sv.spacing = 3
+        sv.axis = .horizontal
+        sv.spacing = 4
         return sv
     }()
     
@@ -43,7 +43,7 @@ class ViewCountView: UIView {
     private func configureLayout() {
         translatesAutoresizingMaskIntoConstraints = false
         addSubview(overallStackView)
-        overallStackView.topAnchor.constraint(equalTo: topAnchor, constant: 8).isActive = true
+        overallStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
         overallStackView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         overallStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
     }

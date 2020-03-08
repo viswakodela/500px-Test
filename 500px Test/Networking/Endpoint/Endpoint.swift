@@ -9,7 +9,6 @@
 import Foundation
 
 protocol EndPointType {
-    var baseURL: URL { get }
     var path: String { get }
     var httpMethod: HTTPMethod { get }
     var task: HTTPTask { get }
@@ -17,6 +16,11 @@ protocol EndPointType {
 }
 
 extension EndPointType {
+    var baseURL: URL {
+        guard let baseUrl =  URL(string: "https://api.500px.com") else { fatalError() }
+        return baseUrl
+    }
+    
     var headers: HTTPHeaders? {
         return [
                 "Content-Type": "application/json",
