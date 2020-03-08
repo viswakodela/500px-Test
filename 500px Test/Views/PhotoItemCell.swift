@@ -58,6 +58,11 @@ class PhotoItemCell: UICollectionViewCell {
         sv.axis = .horizontal
         sv.spacing = 10
         sv.alignment = .center
+        
+        gradient.locations = [0.7, 1]
+        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
+        gradient.frame = sv.bounds
+        sv.layer.addSublayer(gradient)
         return sv
     }()
     
@@ -68,11 +73,6 @@ class PhotoItemCell: UICollectionViewCell {
         iv.translatesAutoresizingMaskIntoConstraints = false
         iv.contentMode = .scaleAspectFill
         iv.clipsToBounds = true
-        
-        gradient.locations = [0.7, 1]
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradient.frame = iv.bounds
-        iv.layer.addSublayer(gradient)
         
         iv.addSubview(userInfoStackView)
         userInfoStackView.leadingAnchor.constraint(equalTo: iv.leadingAnchor, constant: 6).isActive = true

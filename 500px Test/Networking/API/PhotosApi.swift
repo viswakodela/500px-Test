@@ -8,11 +8,12 @@
 
 import Foundation
 
-enum PopularApi {
+enum PhotoStreamApi {
     case getPhotos(featureType: Parameters)
+    case getPhoto(withID: Int)
 }
 
-extension PopularApi: EndPointType {
+extension PhotoStreamApi: EndPointType {
     var baseURL: URL {
         guard let baseUrl =  URL(string: "https://api.500px.com") else { fatalError() }
         return baseUrl
@@ -22,12 +23,16 @@ extension PopularApi: EndPointType {
         switch self {
         case .getPhotos(_):
             return "/v1/photos/"
+        case .getPhoto(let withID):
+            return "/v1/photos/\(withID)"
         }
     }
 
     var httpMethod: HTTPMethod {
         switch self {
         case .getPhotos(_):
+            return .get
+        case .getPhoto(_):
             return .get
         }
     }
@@ -36,6 +41,8 @@ extension PopularApi: EndPointType {
         switch self {
         case .getPhotos(let featureType):
             return .requestParametersAndHeaders(bodyParameters: nil, urlParameters: featureType, additionalHeaders: headers)
+        case .getPhoto(_):
+            return .requestParametersAndHeaders(bodyParameters: nil, urlParameters: nil, additionalHeaders: headers)
         }
     }
 }

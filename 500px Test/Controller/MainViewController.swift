@@ -12,7 +12,7 @@ import SDWebImage
 class MainViewController: UIViewController {
     
     // MARK:- Properties
-    static let popularPhotosApi = Router<PopularApi>()
+    static let popularPhotosApi = Router<PhotoStreamApi>()
     var photos = [Photo]()
     
     /// CurrentPage helps to paginate the data
@@ -39,6 +39,11 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         configureCollectionView()
         fetchData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = false
     }
 
     // MARK:- Helper Methods
@@ -118,7 +123,7 @@ class MainViewController: UIViewController {
     }
     
     private func fetchData() {
-        let parameters: Parameters = ["feature" : "popular", "page": currentPage, "image_size": "3,2"]
+        let parameters: Parameters = ["feature" : "popular", "page": currentPage, "image_size": 3]
         MainViewController.popularPhotosApi.request(.getPhotos(featureType: parameters)) { (data, resp, err) in
             if let error = err {
                 print("Error fetching popular photos with error \(error.localizedDescription)")
@@ -169,6 +174,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        let photoDetailsController = PhotoDetailsController(photo: photos[indexPath.item])
+        navigationController?.pushViewController(photoDetailsController, animated: true)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < 0 {
+            navigationController?.setNavigationBarHidden(false, animated: true)
+        } else {
+            navigationController?.setNavigationBarHidden(true, animated: true)
+        }
     }
 }
