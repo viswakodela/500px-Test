@@ -14,7 +14,7 @@ class ImageWithSpinner: UIImageView {
     lazy var photoImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.backgroundColor = .clear
         return iv
     }()

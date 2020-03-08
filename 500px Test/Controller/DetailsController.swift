@@ -12,6 +12,7 @@ class DetailsController: UICollectionViewController {
     
     let photo: Photo
     let edgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
+    var dataSource = [Int]()
     
     // MARK:- Layout Objects
     lazy var navigationHeaderView: NavigationHeader = {
@@ -77,7 +78,9 @@ extension DetailsController: UICollectionViewDelegateFlowLayout {
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: ImageHeaderView.imageHeaderID, for: indexPath) as! ImageHeaderView
-        header.configureHeader(with: photo, and: photo.user)
+        let detailsHeaderModel = DetailsHeaderModel(photo: photo)
+        header.configureHeader(with: detailsHeaderModel)
+//        header.configureHeader(with: photo, and: photo.user)
         return header
     }
     

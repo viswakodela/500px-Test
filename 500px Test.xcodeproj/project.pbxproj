@@ -16,6 +16,8 @@
 		BD310D0F2414AAB500801041 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D0E2414AAB500801041 /* String+Extension.swift */; };
 		BD310D1424154D1600801041 /* NavigationHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D1324154D1600801041 /* NavigationHeader.swift */; };
 		BD310D162415568300801041 /* ImageWithSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D152415568300801041 /* ImageWithSpinner.swift */; };
+		BD310D1924155C2E00801041 /* LikesAndLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D1824155C2E00801041 /* LikesAndLocationCell.swift */; };
+		BD310D1C24155CC500801041 /* DetailsHeaderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD310D1B24155CC500801041 /* DetailsHeaderModel.swift */; };
 		BD3A43842413234D00C2B72E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43832413234D00C2B72E /* AppDelegate.swift */; };
 		BD3A43862413234D00C2B72E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43852413234D00C2B72E /* SceneDelegate.swift */; };
 		BD3A43882413234D00C2B72E /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3A43872413234D00C2B72E /* MainViewController.swift */; };
@@ -45,6 +47,8 @@
 		BD310D0E2414AAB500801041 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		BD310D1324154D1600801041 /* NavigationHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHeader.swift; sourceTree = "<group>"; };
 		BD310D152415568300801041 /* ImageWithSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageWithSpinner.swift; sourceTree = "<group>"; };
+		BD310D1824155C2E00801041 /* LikesAndLocationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikesAndLocationCell.swift; sourceTree = "<group>"; };
+		BD310D1B24155CC500801041 /* DetailsHeaderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsHeaderModel.swift; sourceTree = "<group>"; };
 		BD3A43802413234D00C2B72E /* 500px Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "500px Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD3A43832413234D00C2B72E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BD3A43852413234D00C2B72E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -86,6 +90,23 @@
 			path = "Custom Views";
 			sourceTree = "<group>";
 		};
+		BD310D1724155B2200801041 /* PhotoDetails Cell */ = {
+			isa = PBXGroup;
+			children = (
+				BD310D0A241492CC00801041 /* ImageHeaderView.swift */,
+				BD310D1824155C2E00801041 /* LikesAndLocationCell.swift */,
+			);
+			path = "PhotoDetails Cell";
+			sourceTree = "<group>";
+		};
+		BD310D1A24155CB700801041 /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				BD310D1B24155CC500801041 /* DetailsHeaderModel.swift */,
+			);
+			path = "View Models";
+			sourceTree = "<group>";
+		};
 		BD3A43772413234D00C2B72E = {
 			isa = PBXGroup;
 			children = (
@@ -105,6 +126,7 @@
 		BD3A43822413234D00C2B72E /* 500px Test */ = {
 			isa = PBXGroup;
 			children = (
+				BD310D1A24155CB700801041 /* View Models */,
 				BD3A43832413234D00C2B72E /* AppDelegate.swift */,
 				BD3A43852413234D00C2B72E /* SceneDelegate.swift */,
 				BD3A4397241325CB00C2B72E /* Networking */,
@@ -191,7 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				BD3A43B42414023300C2B72E /* PhotoItemCell.swift */,
-				BD310D0A241492CC00801041 /* ImageHeaderView.swift */,
+				BD310D1724155B2200801041 /* PhotoDetails Cell */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -285,6 +307,7 @@
 			files = (
 				BD310D092414900900801041 /* DetailsController.swift in Sources */,
 				BD3A43A4241325CB00C2B72E /* Endpoint.swift in Sources */,
+				BD310D1924155C2E00801041 /* LikesAndLocationCell.swift in Sources */,
 				BD3A43A5241325CB00C2B72E /* NetworkRouter.swift in Sources */,
 				BD310D162415568300801041 /* ImageWithSpinner.swift in Sources */,
 				BD3A43882413234D00C2B72E /* MainViewController.swift in Sources */,
@@ -293,6 +316,7 @@
 				BD3A43B52414023300C2B72E /* PhotoItemCell.swift in Sources */,
 				BD3A43A92413265500C2B72E /* PhotosApi.swift in Sources */,
 				BD310D0F2414AAB500801041 /* String+Extension.swift in Sources */,
+				BD310D1C24155CC500801041 /* DetailsHeaderModel.swift in Sources */,
 				BD3A43A6241325CB00C2B72E /* Router.swift in Sources */,
 				BD310D0B241492CC00801041 /* ImageHeaderView.swift in Sources */,
 				BD3A43A3241325CB00C2B72E /* JSONParameterEncoder.swift in Sources */,

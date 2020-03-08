@@ -31,7 +31,7 @@ class ImageHeaderView: UICollectionReusableView {
     let userImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
+        iv.contentMode = .scaleToFill
         iv.clipsToBounds = true
         return iv
     }()
@@ -97,17 +97,18 @@ class ImageHeaderView: UICollectionReusableView {
         overallStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
-    func configureHeader(with image: Photo, and userData: User?) {
-        fetchHDImage(for: image)
-        guard let user = userData, let userImageString = user.userpic_url, let url = URL(string: userImageString) else { return }
-        userImageView.sd_setImage(with: url)
-        imageNameLabel.text = image.name
-        let createdAt = image.featureDate.dateFromString.stringFromDate
-        moreDetailsLabel.text = "by \(user.fullname ?? "") • \(createdAt)"
+    func configureHeader(with detailHeaderModel: DetailsModelProtocol) {
+        let detailModel = detailHeaderModel as! DetailsHeaderModel
+        guard let userProfileURL = URL(string: detailModel.userProfilePic) else {return}
+        userImageView.sd_setImage(with: userProfileURL)
+        moreDetailsLabel.text = "by \(detailModel.userFullName) • \(detailModel.featuredDate)"
+        fetchHDImage(with: detailModel)
     }
     
-    private func fetchHDImage(for photo: Photo) {
-        MainViewController.popularPhotosApi.request(.getPhoto(withID: photo.id)) { (data, resp, err) in
+    func fetchHDImage(with detailModel: DetailsHeaderModel) {
+        imageNameLabel.text = detailModel.imageName
+        
+        MainViewController.popularPhotosApi.request(.getPhoto(withID: detailModel.photoId)) { (data, resp, err) in
             if let error = err {
                 print(error.localizedDescription)
                 // Respond to error
@@ -125,6 +126,9 @@ class ImageHeaderView: UICollectionReusableView {
                 // Respond to error
             }
         }
+    }
+    
+    private func fetchHDImage(for photo: Photo) {
     }
     
     required init?(coder: NSCoder) {
