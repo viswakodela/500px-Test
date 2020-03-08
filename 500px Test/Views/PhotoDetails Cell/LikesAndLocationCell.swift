@@ -14,6 +14,36 @@ class LikeAndLocationCell: UICollectionViewCell {
     let locationView = LocationLable()
     static let locationCellID = "locationCellID"
     
+    let viewsCountView: ViewCountView = {
+        let view = ViewCountView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.titleLabel.text = "Views"
+        return view
+    }()
+    
+    let votesCountView: ViewCountView = {
+        let view = ViewCountView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.titleLabel.text = "Votes"
+        return view
+    }()
+    
+    lazy var bottomStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [viewsCountView, votesCountView, UIView()])
+        sv.translatesAutoresizingMaskIntoConstraints = true
+        sv.axis = .horizontal
+        sv.spacing = 50
+        return sv
+    }()
+    
+    lazy var overallStackView: UIStackView = {
+        let sv = UIStackView(arrangedSubviews: [locationView, bottomStackView])
+        sv.translatesAutoresizingMaskIntoConstraints = false
+        sv.axis = .vertical
+        sv.spacing = 40
+        return sv
+    }()
+
     
     // MARK:- Init
     override init(frame: CGRect) {
@@ -23,16 +53,18 @@ class LikeAndLocationCell: UICollectionViewCell {
     
     // MARK:- Helper Methods
     private func configureLayout() {
-        addSubview(locationView)
-        locationView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        locationView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        locationView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
-        locationView.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        addSubview(overallStackView)
+        overallStackView.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        overallStackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 5).isActive = true
+        overallStackView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        overallStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
     }
     
     func populateCell(with detailModel: DetailsModelProtocol) {
         let detailModel = detailModel as! LikesAndLocationModel
         locationView.countryLabel.text = "\(detailModel.city), \(detailModel.country)"
+        viewsCountView.countLabel.text = detailModel.views
+        votesCountView.countLabel.text = detailModel.votes
     }
     
     required init?(coder: NSCoder) {

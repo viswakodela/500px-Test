@@ -20,6 +20,14 @@ class LikesAndLocationModel: DetailsModelProtocol {
         return photo.user?.country ?? ""
     }
     
+    var views: String {
+        return photo.numberOfViews.giveMeCorrectFormat
+    }
+    
+    var votes: String {
+        return photo.numberOfVotes.giveMeCorrectFormat
+    }
+    
     required init(photo: Photo) {
         self.photo = photo
     }
