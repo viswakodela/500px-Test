@@ -58,15 +58,8 @@ class PhotoItemCell: UICollectionViewCell {
         sv.axis = .horizontal
         sv.spacing = 10
         sv.alignment = .center
-        
-        gradient.locations = [0.7, 1]
-        gradient.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradient.frame = sv.bounds
-        sv.layer.addSublayer(gradient)
         return sv
     }()
-    
-    let gradient = CAGradientLayer()
     
     lazy var photoImageView: UIImageView = {
         let iv = UIImageView()
@@ -91,7 +84,6 @@ class PhotoItemCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         userImageView.layer.cornerRadius = userImageView.bounds.height / 2
-        gradient.frame = photoImageView.bounds
     }
     
     private func configureCell() {

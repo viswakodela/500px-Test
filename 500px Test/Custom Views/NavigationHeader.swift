@@ -45,6 +45,11 @@ class NavigationHeader: UIView {
     
     private func configureLayout() {
         backgroundColor = .systemBackground
+        layer.shadowColor = UIColor.black.cgColor
+        layer.shadowOffset = CGSize(width: 0, height: 0)
+        layer.shadowRadius = 1
+        layer.shadowOpacity = 1
+        
         addSubview(overallStackView)
         overallStackView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         overallStackView.heightAnchor.constraint(equalToConstant: 50).isActive = true

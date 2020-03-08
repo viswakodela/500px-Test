@@ -12,11 +12,10 @@ class ImageHeaderView: UICollectionReusableView {
     
     static let imageHeaderID = "imageHeaderID"
     
-    let photoImageView: UIImageView = {
-        let iv = UIImageView()
-        iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFit
-        return iv
+    let imageWithSpinnerView: ImageWithSpinner = {
+        let iws = ImageWithSpinner(frame: .zero)
+        iws.translatesAutoresizingMaskIntoConstraints = false
+        return iws
     }()
     
     let imageNameLabel: UILabel = {
@@ -32,7 +31,7 @@ class ImageHeaderView: UICollectionReusableView {
     let userImageView: UIImageView = {
         let iv = UIImageView()
         iv.translatesAutoresizingMaskIntoConstraints = false
-        iv.contentMode = .scaleAspectFill
+        iv.contentMode = .scaleAspectFit
         iv.clipsToBounds = true
         return iv
     }()
@@ -71,27 +70,23 @@ class ImageHeaderView: UICollectionReusableView {
         
         userImageView.widthAnchor.constraint(equalToConstant: 50).isActive = true
         userImageView.heightAnchor.constraint(equalToConstant: 50).isActive = true
+        userImageView.layer.cornerRadius = 25
         return sv
     }()
     
     lazy var overallStackView: UIStackView = {
-        let sv = UIStackView(arrangedSubviews: [photoImageView, overallUserDetailsStackView, seperaterLine, UIView()])
+        let sv = UIStackView(arrangedSubviews: [imageWithSpinnerView, overallUserDetailsStackView, seperaterLine, UIView()])
         sv.translatesAutoresizingMaskIntoConstraints = false
         sv.axis = .vertical
         sv.spacing = 10
         seperaterLine.heightAnchor.constraint(equalToConstant: 2).isActive = true
-        photoImageView.heightAnchor.constraint(equalTo: sv.heightAnchor, multiplier: 0.8).isActive = true
+        imageWithSpinnerView.heightAnchor.constraint(equalTo: sv.heightAnchor, multiplier: 0.8).isActive = true
         return sv
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configurelayout()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        userImageView.layer.cornerRadius = userImageView.bounds.height / 2
     }
     
     private func configurelayout() {
@@ -122,7 +117,8 @@ class ImageHeaderView: UICollectionReusableView {
                 let photoDetail = try JSONDecoder().decode(PhotoDetail.self, from: data)
                 DispatchQueue.main.async {
                     guard let imageUrlString = photoDetail.photo.imageUrls.first, let url = URL(string: imageUrlString) else { return }
-                    self.photoImageView.sd_setImage(with: url)
+                    self.imageWithSpinnerView.photoImageView.sd_setImage(with: url)
+                    self.imageWithSpinnerView.activitySpinner.stopAnimating()
                 }
             } catch {
                 print("Error fetching Photo Details with error \(error.localizedDescription)")
