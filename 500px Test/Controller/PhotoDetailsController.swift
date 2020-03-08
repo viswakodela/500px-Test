@@ -40,8 +40,8 @@ class PhotoDetailsController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addScrollView()
         configureLayout()
+        addScrollView()
         fetchImageData()
     }
     

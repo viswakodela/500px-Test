@@ -22,9 +22,10 @@ struct Photo: Decodable {
     let height                  : Int
     let user                    : User?
     let images                  : [Images]?
+    let name                    : String
     
     private enum CodingKeys: String, CodingKey {
-        case id, description, url, height, user, images
+        case id, description, url, height, user, images, name
         case createdDate        = "created_at"
         case featureDate        = "feature_date"
         case takenAt            = "taken_at"

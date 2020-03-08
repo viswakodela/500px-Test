@@ -41,8 +41,8 @@ class MainViewController: UIViewController {
         fetchData()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navigationController?.navigationBar.isHidden = false
     }
 
@@ -174,8 +174,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let photoDetailsController = PhotoDetailsController(photo: photos[indexPath.item])
-        navigationController?.pushViewController(photoDetailsController, animated: true)
+        let detailsController = DetailsController(photo: photos[indexPath.item])
+        navigationController?.pushViewController(detailsController, animated: true)
+//        let photoDetailsController = PhotoDetailsController(photo: photos[indexPath.item])
+//        navigationController?.pushViewController(photoDetailsController, animated: true)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
